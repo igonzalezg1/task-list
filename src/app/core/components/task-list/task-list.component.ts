@@ -71,4 +71,23 @@ export class TaskListComponent {
   trackRow(_i: number, row: TaskEntity) {
     return row.id;
   }
+
+  statuses: TaskStatus[] = ['creada', 'en progreso', 'completada'];
+
+
+  statusClass(s: TaskStatus) {
+    return {
+      'bg-slate-100 text-slate-700': s === 'creada',
+      'bg-amber-100 text-amber-700': s === 'en progreso',
+      'bg-emerald-100 text-emerald-700': s === 'completada',
+    };
+  }
+
+  statusDot(s: TaskStatus) {
+    return {
+      'bg-slate-500': s === 'creada',
+      'bg-amber-500': s === 'en progreso',
+      'bg-emerald-500': s === 'completada',
+    };
+  }
 }

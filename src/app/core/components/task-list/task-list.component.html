@@ -68,17 +68,42 @@
       </ng-container>
 
       <!-- Status -->
+      <!-- Status (cambiar rápido, con chip de color) -->
       <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef>Estado</th>
         <td mat-cell *matCellDef="let row">
           <mat-select
             [value]="row.status"
             (selectionChange)="changeStatus(row, $event.value)"
-            class="min-w-[150px]"
+            class="min-w-[170px]"
           >
-            <mat-option value="creada">Creada</mat-option>
-            <mat-option value="en progreso">En progreso</mat-option>
-            <mat-option value="completada">Completada</mat-option>
+            <!-- Valor seleccionado con chip -->
+            <mat-select-trigger>
+              <span
+                class="px-2 py-0.5 rounded-full text-xs inline-flex items-center gap-2"
+                [ngClass]="statusClass(row.status)"
+              >
+                <span
+                  class="inline-block w-2 h-2 rounded-full"
+                  [ngClass]="statusDot(row.status)"
+                ></span>
+                {{ row.status | titlecase }}
+              </span>
+            </mat-select-trigger>
+
+            <!-- Opciones con chip -->
+            <mat-option *ngFor="let s of statuses" [value]="s">
+              <span
+                class="px-2 py-0.5 rounded-full text-xs inline-flex items-center gap-2"
+                [ngClass]="statusClass(s)"
+              >
+                <span
+                  class="inline-block w-2 h-2 rounded-full"
+                  [ngClass]="statusDot(s)"
+                ></span>
+                {{ s | titlecase }}
+              </span>
+            </mat-option>
           </mat-select>
         </td>
       </ng-container>
