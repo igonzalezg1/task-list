@@ -55,7 +55,7 @@ export class TaskFormComponent {
 
   hoy = new Date();
 
-  cconstructor() {
+  constructor() {
     if (this.data) {
       this.form.patchValue({
         nombre: this.data.nombre,
