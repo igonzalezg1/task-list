@@ -1,1 +1,100 @@
-<p>task-form works!</p>
+<h2 mat-dialog-title class="text-2xl font-semibold tracking-tight">
+  Nueva tarea
+</h2>
+<form
+  class="grid grid-cols-1 md:grid-cols-2 gap-4 p-5"
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+>
+  <!-- Nombre -->
+  <mat-form-field appearance="fill" class="md:col-span-2 w-full">
+    <mat-label>Nombre</mat-label>
+    <input
+      matInput
+      placeholder="Ej. Comprar materiales"
+      formControlName="nombre"
+    />
+    <mat-hint>Máx. 80 caracteres</mat-hint>
+    <mat-error
+      *ngIf="
+        form.get('nombre')?.hasError('required') &&
+        (form.get('nombre')?.touched || form.get('nombre')?.dirty)
+      "
+    >
+      El nombre es requerido
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Descripción -->
+  <mat-form-field appearance="fill" class="md:col-span-2 w-full">
+    <mat-label>Descripción</mat-label>
+    <textarea
+      matInput
+      rows="3"
+      placeholder="Detalle de la tarea"
+      formControlName="descripcion"
+    ></textarea>
+    <mat-hint>Máx. 500 caracteres</mat-hint>
+    <mat-error
+      *ngIf="
+        form.get('descripcion')?.hasError('required') &&
+        (form.get('descripcion')?.touched || form.get('descripcion')?.dirty)
+      "
+    >
+      La descripción es requerida
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Prioridad -->
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Prioridad</mat-label>
+    <mat-select formControlName="prioridad">
+      <mat-option value="alta">Alta</mat-option>
+      <mat-option value="mediana">Mediana</mat-option>
+      <mat-option value="baja">Baja</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Fecha límite -->
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Fecha límite de entrega</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      formControlName="fechaLimite"
+      [min]="hoy"
+      required
+      placeholder="Selecciona una fecha"
+    />
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+    <mat-error
+      *ngIf="
+        form.get('fechaLimite')?.hasError('required') &&
+        (form.get('fechaLimite')?.touched || form.get('fechaLimite')?.dirty)
+      "
+    >
+      La fecha límite es obligatoria
+    </mat-error>
+    <mat-error *ngIf="form.get('fechaLimite')?.hasError('matDatepickerParse')">
+      Formato de fecha inválido
+    </mat-error>
+    <mat-error *ngIf="form.get('fechaLimite')?.hasError('matDatepickerMin')">
+      Debe ser hoy o posterior
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Acciones -->
+  <div class="md:col-span-2 flex items-center justify-end gap-3 pt-2">
+    <button type="button" mat-button (click)="cancelar()">Cancelar</button>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="form.invalid"
+    >
+      Guardar
+    </button>
+  </div>
+</form>

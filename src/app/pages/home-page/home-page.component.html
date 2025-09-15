@@ -1,10 +1,17 @@
 <app-header></app-header>
 
-<mat-grid-list cols="1" rowHeight="fit" class="home-container">
+<mat-grid-list cols="1" rowHeight="fit" class="h-full">
   <mat-grid-tile>
-    <div class="content">
-      <img src="assets/img/logotipo.png" alt="TaskFlow Logo" class="logo" />
-      <h1 class="text-h1">TaskFlow, organizador de tareas</h1>
+    <div class="flex flex-col items-center justify-start text-center h-full mt-6">
+      <img src="assets/img/logotipo.png" alt="TaskFlow Logo" class="w-12 h-auto mb-2" />
+      <h1 class="text-xl font-semibold text-blue-600 mb-4">
+        TaskFlow, organizador de tareas
+      </h1>
+
+      <button mat-raised-button color="primary" class="mb-4" (click)="openDialog()">
+        Nueva tarea
+      </button>
+
       <app-task-list></app-task-list>
     </div>
   </mat-grid-tile>
