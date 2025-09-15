@@ -1,2 +1,11 @@
 <app-header></app-header>
-<h1>Welcome to the Home Page</h1>
+
+<mat-grid-list cols="1" rowHeight="fit" class="home-container">
+  <mat-grid-tile>
+    <div class="content">
+      <img src="assets/img/logotipo.png" alt="TaskFlow Logo" class="logo" />
+      <h1 class="text-h1">TaskFlow, organizador de tareas</h1>
+      <app-task-list></app-task-list>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
