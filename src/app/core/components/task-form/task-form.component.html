@@ -6,7 +6,6 @@
   [formGroup]="form"
   (ngSubmit)="submit()"
 >
-  <!-- Nombre -->
   <mat-form-field appearance="fill" class="md:col-span-2 w-full">
     <mat-label>Nombre</mat-label>
     <input
@@ -25,7 +24,6 @@
     </mat-error>
   </mat-form-field>
 
-  <!-- Descripción -->
   <mat-form-field appearance="fill" class="md:col-span-2 w-full">
     <mat-label>Descripción</mat-label>
     <textarea
@@ -45,7 +43,6 @@
     </mat-error>
   </mat-form-field>
 
-  <!-- Prioridad -->
   <mat-form-field appearance="fill" class="w-full">
     <mat-label>Prioridad</mat-label>
     <mat-select formControlName="prioridad">
@@ -55,7 +52,6 @@
     </mat-select>
   </mat-form-field>
 
-  <!-- Fecha límite -->
   <mat-form-field appearance="fill" class="w-full">
     <mat-label>Fecha límite de entrega</mat-label>
     <input
@@ -85,7 +81,6 @@
     </mat-error>
   </mat-form-field>
 
-  <!-- Acciones -->
   <div class="md:col-span-2 flex items-center justify-end gap-3 pt-2">
     <button type="button" mat-button (click)="cancelar()">Cancelar</button>
     <button
